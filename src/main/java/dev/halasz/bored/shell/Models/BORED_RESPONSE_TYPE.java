@@ -24,7 +24,7 @@ public enum BORED_RESPONSE_TYPE {
 
     public static Optional<BORED_RESPONSE_TYPE> get(String inputType) {
         return Arrays.stream(BORED_RESPONSE_TYPE.values())
-                .filter(type -> type.toString().equals(inputType))
+                .filter(type -> type.toString().equals(inputType.toLowerCase().trim()))
                 .findFirst();
     }
 
