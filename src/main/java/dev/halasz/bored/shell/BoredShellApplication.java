@@ -3,7 +3,12 @@ package dev.halasz.bored.shell;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.shell.CompletionProposal;
 import org.springframework.shell.command.CommandRegistration;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class BoredShellApplication {
@@ -20,15 +25,18 @@ public class BoredShellApplication {
 				.command("get")
 				.description("Get random tipps against boredom.")
 				.withTarget()
-				.function(ctx -> {
-					String arg = ctx.getRawArgs().length > 1 ? ctx.getRawArgs()[1] : null;
-					return new GetFromBoredAPI().getRequestToBoredAPI(arg);
-				})
-				.and()
-					.withOption()
+					.function(ctx -> {
+						String arg = ctx.getRawArgs().length > 1 ? ctx.getRawArgs()[1] : null;
+						return new GetFromBoredAPI().getRequestToBoredAPI(arg);
+					})
+					.and()
+				.withOption()
+//					.completion(ctx -> Stream.of("education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork")
+//							.map(CompletionProposal::new)
+//							.collect(Collectors.toList()))
 					.longNames("education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork")
 					.required(false)
-				.and()
+					.and()
 				.build();
 	}
 }
