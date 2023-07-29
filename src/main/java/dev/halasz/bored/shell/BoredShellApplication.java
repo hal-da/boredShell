@@ -1,19 +1,18 @@
 package dev.halasz.bored.shell;
 
+import dev.halasz.bored.shell.Models.BORED_RESPONSE_TYPE;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.shell.CompletionProposal;
 import org.springframework.shell.command.CommandRegistration;
 
-import java.util.Arrays;
+import org.springframework.shell.CompletionProposal;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @SpringBootApplication
 public class BoredShellApplication {
-
-	String[] PossibleTypes = {"education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"};
+	public final String[] PossibleTypes = BORED_RESPONSE_TYPE.getEnums();
 
 	public static void main(String[] args) {
 		SpringApplication.run(BoredShellApplication.class, args);
@@ -26,15 +25,16 @@ public class BoredShellApplication {
 				.description("Get random tipps against boredom.")
 				.withTarget()
 					.function(ctx -> {
-						String arg = ctx.getRawArgs().length > 1 ? ctx.getRawArgs()[1] : null;
-						return new GetFromBoredAPI().getRequestToBoredAPI(arg);
+						String arg = ctx.getRawArgs()[ctx.getRawArgs().length-1];
+						return new GetTip().getRequestToBoredAPI(arg);
 					})
 					.and()
 				.withOption()
-//					.completion(ctx -> Stream.of("education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork")
-//							.map(CompletionProposal::new)
-//							.collect(Collectors.toList()))
-					.longNames("education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork")
+					.completion(ctx -> Stream.of(PossibleTypes)
+							.map(CompletionProposal::new)
+							.collect(Collectors.toList()))
+					.longNames("type")
+					.shortNames('t')
 					.required(false)
 					.and()
 				.build();

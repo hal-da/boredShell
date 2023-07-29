@@ -4,6 +4,7 @@ package dev.halasz.bored.shell.Models;
 import java.util.Arrays;
 import java.util.Optional;
 
+
 public enum BORED_RESPONSE_TYPE {
     education("education"),
     recreational("recreational"),
@@ -27,7 +28,7 @@ public enum BORED_RESPONSE_TYPE {
                 .findFirst();
     }
 
-//    public String[] getAsArr(){
-//        return Arrays.stream(BORED_RESPONSE_TYPE.values()).map(Enum::name).toList();
-//    }
+    public static String[] getEnums(){
+        return  Arrays.toString(BORED_RESPONSE_TYPE.values()).replaceAll("^.|.$", "").split(", ");
+    }
 }
