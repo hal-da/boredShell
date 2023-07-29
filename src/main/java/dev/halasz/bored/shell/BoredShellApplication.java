@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.shell.command.CommandRegistration;
-import dev.halasz.bored.shell.Models.BORED_RESPONSE_TYPE;
 
 @SpringBootApplication
 public class BoredShellApplication {
@@ -19,6 +18,7 @@ public class BoredShellApplication {
 	CommandRegistration commandRegistration() {
 		return 	CommandRegistration.builder()
 				.command("get")
+				.description("Get random tipps against boredom.")
 				.withTarget()
 				.function(ctx -> {
 					String arg = ctx.getRawArgs().length > 1 ? ctx.getRawArgs()[1] : null;

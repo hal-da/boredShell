@@ -3,7 +3,6 @@ package dev.halasz.bored.shell.Models;
 
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public enum BORED_RESPONSE_TYPE {
     education("education"),
@@ -28,7 +27,7 @@ public enum BORED_RESPONSE_TYPE {
                 .findFirst();
     }
 
-    public String[] getAsArr(){
-        return Arrays.stream(BORED_RESPONSE_TYPE.values()).map(Enum::name).toList();
-    }
+//    public String[] getAsArr(){
+//        return Arrays.stream(BORED_RESPONSE_TYPE.values()).map(Enum::name).toList();
+//    }
 }
