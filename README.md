@@ -8,8 +8,8 @@
 -[x] Optional: erstelle zusätzliche Filter Parameter, um z.B. nur Sport Aktivitäten
  abzufragen.
 -[x] Optional: unterstütze Completion für den zusätzlichen Filter Parameter
--[ ] Optional: erstelle Unit Tests
--[ ] Optional: erstelle einen Spring Shell Test als Integration Test und überprüfe die Code
+-[x] Optional: erstelle Unit Tests
+-[X] Optional: erstelle einen Spring Shell Test als Integration Test und überprüfe die Code
  Coverage
 -[ ] Optional: erstelle eine OpenAPI Spezifikation bored.yaml und verwende den OpenAPI
  Generator, um den API-Client generieren zu lassen.

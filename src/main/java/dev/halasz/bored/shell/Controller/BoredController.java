@@ -4,7 +4,7 @@ import dev.halasz.bored.shell.Models.BoredResponse;
 import dev.halasz.bored.shell.Models.BoredResponseDTO;
 import org.springframework.web.reactive.function.client.WebClient;
 
-public class BoredController implements IGetResponse {
+public class BoredController {
     public static BoredResponseDTO getResponse(String url) {
         BoredResponse res;
         WebClient client = WebClient.create(url);

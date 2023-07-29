@@ -5,11 +5,14 @@ import dev.halasz.bored.shell.Models.BORED_RESPONSE_TYPE;
 import dev.halasz.bored.shell.Models.BoredResponseDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import org.springframework.shell.test.autoconfigure.ShellTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@ShellTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class BoredShellApplicationTests {
 
 
@@ -64,5 +67,12 @@ class BoredShellApplicationTests {
 		GetTip getTip = new GetTip();
 		String response = getTip.getRequestToBoredAPI("diy");
 		assertThat(response).isNotEqualTo("Something went wrong, check your internet connection");
+	}
+	@DisplayName("Testing BoredResponseDTO")
+	@Test
+	public void DTOTest(){
+		String myTestString = "testing";
+		BoredResponseDTO boredResponseDTO = new BoredResponseDTO(myTestString);
+		assertThat(boredResponseDTO.activity()).isEqualTo(myTestString);
 	}
 }
